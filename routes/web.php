@@ -29,6 +29,7 @@ Route::group(['namespace' => 'Auth' , 'middleware' => 'CheckAge'] , function (){
 Route::get('fillable','CrudController@getOffers');
 
 Route::group(['prefix' => 'offers'] , function (){
-    Route::post('store' , 'CrudController@store')->name('offer.store');
+
     Route::get('create' , 'CrudController@create');
+    Route::post('store' , 'CrudController@store')->name('offer.store');
 });
