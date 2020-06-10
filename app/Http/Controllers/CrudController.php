@@ -15,10 +15,15 @@ class CrudController extends Controller
     public function store(Request $request){
          //  Offer::create(['name' => 'fridge' ,'price' => '2000' ]);
          // validate data before insert to database
-        $validator=Validator::make($request->all() ,[
+        $rules = [
             'name' => 'required|max:100|unique:offers,name' ,
             'price' => 'required|numeric',
-        ]);
+        ];
+        $validator=Validator::make($request->all() , $rules , [
+            'name.required' => 'اسم العرض مطولب' ,
+            'price.required'  => 'سعر العرض مطلوب'  ,
+            'price.numeric' => 'يجب ان يكون سعر العرض رقم '
+            ]);
         if ($validator->fails()){
 
             return $validator->errors();
